@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Upload</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <button ion-button (click)="captureImage()">Take photo</button>
+  <button ion-button (click)="upload()" [disabled]="isCanvasEmpty">Upload</button>
+  <canvas #myCanvas></canvas>
+  <ion-list>
+    <ion-item>
+      <ion-label>Brightness {{ editorProvider.brightness}}</ion-label>
+      <ion-range [debounce]="500" min="-255" max="255" step="1" [(ngModel)]="editorProvider.brightness"
+                 (ionChange)="editorProvider.applyFilters()">
+        <ion-icon small range-left name="sunny"></ion-icon>
+        <ion-icon range-right name="sunny"></ion-icon>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <ion-label>Contrast {{ editorProvider.contrast}}</ion-label>
+      <ion-range [debounce]="500" min="0" max="100" step="1" [(ngModel)]="editorProvider.contrast"
+                 (ionChange)="editorProvider.applyFilters()">
+        <ion-icon small range-left name="sunny"></ion-icon>
+        <ion-icon range-right name="sunny"></ion-icon>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <ion-icon item-start name="contrast"></ion-icon>
+      <ion-label>Auto Contrast: {{ editorProvider.autoContrast}}</ion-label>
+      <ion-checkbox item-end [(ngModel)]="editorProvider.autoContrast" (ionChange)="editorProvider.applyFilters()"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-icon item-start name="color-fill" color="gray"></ion-icon>
+      <ion-label>Grayscale: {{ editorProvider.grayscale}}</ion-label>
+      <ion-checkbox item-end [(ngModel)]="editorProvider.grayscale" (ionChange)="editorProvider.applyFilters()"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Red {{editorProvider.redFilter}}</ion-label>
+      <ion-range [debounce]="500" min="0" max="255" step="1" [(ngModel)]="editorProvider.redFilter"
+                 (ionChange)="editorProvider.applyFilters()">
+        <ion-icon range-left name="color-fill" color="gray"></ion-icon>
+        <ion-icon range-right name="color-fill" color="red"></ion-icon>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <ion-label>Green {{editorProvider.greenFilter}}</ion-label>
+      <ion-range [debounce]="500" min="0" max="255" step="1" [(ngModel)]="editorProvider.greenFilter"
+                 (ionChange)="editorProvider.applyFilters()">
+        <ion-icon range-left name="color-fill" color="gray"></ion-icon>
+        <ion-icon range-right name="color-fill" color="green"></ion-icon>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <ion-label>Blue {{editorProvider.blueFilter}}</ion-label>
+      <ion-range [debounce]="500" min="0" max="255" step="1" [(ngModel)]="editorProvider.blueFilter"
+                 (ionChange)="editorProvider.applyFilters()">
+        <ion-icon range-left name="color-fill" color="gray"></ion-icon>
+        <ion-icon range-right name="color-fill" color="blue"></ion-icon>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <ion-label>Strength {{editorProvider.strengthFilter}}</ion-label>
+      <ion-range [debounce]="500" min="0" max="100" step="1" [(ngModel)]="editorProvider.strengthFilter"
+                 (ionChange)="editorProvider.applyFilters()">
+        <ion-icon range-left name="color-fill" color="gray"></ion-icon>
+        <ion-icon range-right name="color-fill" color="dark"></ion-icon>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+</ion-content>
